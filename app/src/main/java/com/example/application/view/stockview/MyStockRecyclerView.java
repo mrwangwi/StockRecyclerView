@@ -20,6 +20,7 @@ import com.example.application.StockBean;
 import com.example.application.adapter.LeftAdapter;
 import com.example.application.adapter.RightAdapter;
 import com.example.application.adapter.TableAdapter;
+import com.example.application.utils.DisplayUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,6 +84,7 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
         params.gravity = Gravity.START | Gravity.CENTER_VERTICAL;
         llParent.setLayoutParams(params);
+        llParent.setPadding((int) DisplayUtil.dpToPx(context, 15), 0, 0, 0);
         llParent.setOnClickListener(this);
         recyclerTab.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
         recyclerRight.setLayoutManager(new LinearLayoutManager(context));
