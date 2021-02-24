@@ -5,9 +5,7 @@
 自己工作工程中，发现网上没有现成的好用的，自己琢磨的一个
 
 
-<img src="https://boduan.oss-cn-hangzhou.aliyuncs.com/20210224/1614145827030487.jpg" width="200" height="200" alt="微信小程序"/>
-
-![Image text](https://boduan.oss-cn-hangzhou.aliyuncs.com/20210224/1614145827030487.jpg)
+<img src="https://boduan.oss-cn-hangzhou.aliyuncs.com/20210224/1614145827030487.jpg" width="400" height="800" alt="微信小程序"/>
 
 下载APK  
 ![Image text](https://boduan.oss-cn-hangzhou.aliyuncs.com/20210224/1614128308601911.png)
