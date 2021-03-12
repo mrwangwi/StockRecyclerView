@@ -65,4 +65,8 @@ public class TableAdapter extends CommonAdapter<String> {
     public void setShortType(ShortSelectBean shortType) {
         this.shortType = shortType;
     }
+
+    public ShortSelectBean getShortType() {
+        return shortType;
+    }
 }
