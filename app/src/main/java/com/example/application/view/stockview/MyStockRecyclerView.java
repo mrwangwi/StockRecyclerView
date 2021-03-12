@@ -243,7 +243,7 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
         if (orderListener != null) {
             orderListener.order(shortSelectBean);
             setTable(TableUtils.getTabList(TableUtils.TABLE0, shortSelectBean.getShortName()));
-            multiScroll.smoothScrollTo(0, 0);
+            multiScroll.scrollTo(0, 0);
             recyclerRight.scrollToPosition(0);
             recyclerLeft.scrollToPosition(0);
         }

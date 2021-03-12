@@ -194,6 +194,7 @@ public class MultiScroll extends HorizontalScrollView {
 
         switch (action) {
             case MotionEvent.ACTION_MOVE:
+                isTouch = true;
                 this.scrollType = ScrollType.TOUCH_SCROLL;
                 //手指在上面移动的时候   取消滚动监听线程
                 mHandler.removeCallbacks(scrollRunnable);
@@ -201,6 +202,7 @@ public class MultiScroll extends HorizontalScrollView {
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
                 //手指移动的时候
+                isTouch = false;
                 mHandler.post(scrollRunnable);
                 break;
         }
@@ -213,11 +215,12 @@ public class MultiScroll extends HorizontalScrollView {
         this.recyclerView = recyclerView;
     }
 
+    private boolean isTouch;
 
     @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
-        if (myShadowView != null) {
+        if (myShadowView != null && isTouch) {
             myShadowView.start();
         }
         ivLeft.setVisibility(GONE);
@@ -280,6 +283,7 @@ public class MultiScroll extends HorizontalScrollView {
                 } else {
                     if (myShadowView != null) {
                         myShadowView.finish();
+                        isTouch = false;
                     }
                     scrollType = ScrollType.IDLE;
                     ivLeft.setVisibility(getScrollX() >= childWidth / 2 ? VISIBLE : GONE);
