@@ -204,16 +204,21 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
                 if (adapterTab.getShortType().getShortTypeString().equals(selectBean.getShortTypeString())) {
                     shortType.setDesc(!shortType.isDesc());
                     adapterTab.setShortType(shortType);
+                    ryTagAdapter.setSelectBean(shortType);
                 } else {
                     selectBean.setDesc(true);
-                    this.shortType = selectBean;
+                    shortType = selectBean;
                     adapterTab.setShortType(selectBean);
+                    ryTagAdapter.setSelectBean(selectBean);
+                }
+                if (orderListener != null) {
+                    orderListener.order(shortType);
                 }
                 adapterTab.notifyDataSetChanged();
+                ryTagAdapter.notifyDataSetChanged();
                 recyclerRight.scrollToPosition(0);
                 recyclerLeft.scrollToPosition(0);
             }
-
         }
     }
 
