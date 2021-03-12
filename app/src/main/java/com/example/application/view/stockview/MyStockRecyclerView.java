@@ -93,6 +93,9 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
         llParent.setLayoutParams(params);
         llParent.setPadding((int) DisplayUtil.dpToPx(context, 15), 0, 0, 0);
         llParent.setOnClickListener(this);
+        if (ShortSelectBean.getShortBean("股票代码") == null) {
+            llParent.findViewById(R.id.iv).setVisibility(INVISIBLE);
+        }
         recyclerTab.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
         recyclerRight.setLayoutManager(new LinearLayoutManager(context));
         recyclerLeft.setLayoutManager(new LinearLayoutManager(context));

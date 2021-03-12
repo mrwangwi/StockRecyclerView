@@ -30,6 +30,9 @@ public class TableAdapter extends CommonAdapter<String> {
     @Override
     protected void convert(ViewHolder holder, String s, int position) {
         holder.setText(R.id.tv, s);
+
+        holder.getView(R.id.iv).setVisibility(ShortSelectBean.getShortBean(s) == null ? View.GONE : View.VISIBLE);
+
         if (shortType != null) {
             if (s.equals("涨幅") && (shortType.getShortName().equals("涨幅榜") || shortType.getShortName().equals("跌幅榜"))) {
                 holder.setImageResource(R.id.iv, shortType.isDesc() ? R.mipmap.icon_quotation_order_down : R.mipmap.icon_quotation_order_up);
