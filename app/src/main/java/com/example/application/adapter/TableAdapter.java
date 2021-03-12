@@ -37,7 +37,11 @@ public class TableAdapter extends CommonAdapter<String> {
                 holder.setImageResource(R.id.iv, shortType.isDesc() ? R.mipmap.icon_quotation_order_down : R.mipmap.icon_quotation_order_up);
             } else if (s.equals(shortType.getShortName())) {
                 holder.setImageResource(R.id.iv, shortType.isDesc() ? R.mipmap.icon_quotation_order_down : R.mipmap.icon_quotation_order_up);
+            } else {
+                holder.setImageResource(R.id.iv, R.mipmap.icon_quotation_order);
             }
+        } else {
+            holder.setImageResource(R.id.iv, R.mipmap.icon_quotation_order);
         }
         holder.getView(R.id.ll_parent).setOnClickListener(v -> {
             clickListener.onClick(v);
