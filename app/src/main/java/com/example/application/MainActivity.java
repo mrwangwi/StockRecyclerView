@@ -25,14 +25,15 @@ public class MainActivity extends AppCompatActivity implements MyStockRecyclerVi
         setContentView(R.layout.activity_main);
         stockRecyclerView = findViewById(R.id.recycler);
         stockRecyclerView.setWeight(1, 3);
-        stockRecyclerView.setTable(getTabList(TABLE0));
+
         stockRecyclerView.setScrollListener(this);
         stockRecyclerView.setOrderListener(this);
         for (int i = 0; i < 100; i++) {
             arrayList.add(null);
         }
+//        stockRecyclerView.setTable(getTabList(TABLE0));
+        stockRecyclerView.setTopTable();
         stockRecyclerView.setData(arrayList);
-//        stockRecyclerView.setTopTable();
     }
 
     private int count;
