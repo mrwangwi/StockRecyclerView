@@ -156,6 +156,7 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
     public void setTable(List<String> listTab) {
         this.listTab.clear();
         this.listTab.addAll(listTab);
+        adapterTab.setShortType(shortType);
         adapterTab.notifyDataSetChanged();
         //设置表头的同时，重新设置列表
         adapterRight = new RightAdapter(getContext(), list, left, right, listTab.size());

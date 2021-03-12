@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.application.R;
+import com.example.application.ShortSelectBean;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -16,6 +17,7 @@ public class TableAdapter extends CommonAdapter<String> {
     private final int left;
     private final int right;
     private View.OnClickListener clickListener;
+    private ShortSelectBean shortType;
 
     public TableAdapter(Context context, List<String> datas, int left, int right, View.OnClickListener clickListener) {
         super(context, R.layout.view_tab, datas);
@@ -28,6 +30,15 @@ public class TableAdapter extends CommonAdapter<String> {
     @Override
     protected void convert(ViewHolder holder, String s, int position) {
         holder.setText(R.id.tv, s);
+        if (shortType != null) {
+            if (s.equals("涨幅") && (shortType.getShortName().equals("涨幅榜") || shortType.getShortName().equals("跌幅榜"))) {
+                holder.setImageResource(R.id.iv, shortType.isDesc() ? R.mipmap.icon_quotation_order_down : R.mipmap.icon_quotation_order_up);
+            } else if (s.equals("涨速") && (shortType.getShortName().equals("快速涨幅"))) {
+                holder.setImageResource(R.id.iv, shortType.isDesc() ? R.mipmap.icon_quotation_order_down : R.mipmap.icon_quotation_order_up);
+            } else if (s.equals(shortType.getShortName())) {
+                holder.setImageResource(R.id.iv, shortType.isDesc() ? R.mipmap.icon_quotation_order_down : R.mipmap.icon_quotation_order_up);
+            }
+        }
         holder.getView(R.id.ll_parent).setOnClickListener(v -> {
             clickListener.onClick(v);
         });
@@ -45,5 +56,9 @@ public class TableAdapter extends CommonAdapter<String> {
             }
         }
         super.onViewHolderCreated(holder, itemView);
+    }
+
+    public void setShortType(ShortSelectBean shortType) {
+        this.shortType = shortType;
     }
 }
