@@ -225,7 +225,9 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
     @Override
     public void click(ShortSelectBean shortSelectBean) {
         if (orderListener != null) {
-            shortSelectBean.setDesc(true);
+            if (!shortSelectBean.getShortName().equals("涨幅")) {
+                shortSelectBean.setDesc(true);
+            }
             orderListener.order(shortSelectBean);
             this.shortType = shortSelectBean;
             setTable(TableUtils.getTabList(TableUtils.TABLE0, shortSelectBean.getShortName()));

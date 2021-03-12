@@ -60,7 +60,7 @@ public class RyTagAdapter extends CommonAdapter<ShortSelectBean> {
                 s.setChecked(false);
             }
         } else if (s.getShortName().equals("跌幅榜")) {
-            if ((selectBean.getShortName().startsWith("涨幅") || selectBean.getShortName().startsWith("跌幅")) && !selectBean.isDesc()) {
+            if ((selectBean.getShortName().startsWith("涨幅")) && !selectBean.isDesc()) {
                 s.setChecked(true);
             } else {
                 s.setChecked(false);
