@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements MyStockRecyclerVi
             arrayList.add(null);
         }
         stockRecyclerView.setData(arrayList);
-        stockRecyclerView.setTopTable();
+//        stockRecyclerView.setTopTable();
     }
 
     private int count;
