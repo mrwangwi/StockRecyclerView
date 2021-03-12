@@ -205,6 +205,7 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
                     shortType.setDesc(!shortType.isDesc());
                     adapterTab.setShortType(shortType);
                 } else {
+                    selectBean.setDesc(true);
                     this.shortType = selectBean;
                     adapterTab.setShortType(selectBean);
                 }
