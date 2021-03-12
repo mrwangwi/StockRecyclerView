@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements MyStockRecyclerVi
         for (int i = 0; i < 100; i++) {
             arrayList.add(null);
         }
-//        stockRecyclerView.setTable(getTabList(TABLE0));
-        stockRecyclerView.setTopTable();
+        stockRecyclerView.setTable(getTabList(TABLE0));
+//        stockRecyclerView.setTopTable();
         stockRecyclerView.setData(arrayList);
     }
 
