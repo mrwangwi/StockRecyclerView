@@ -125,6 +125,7 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
     }
 
     public void setTopTable() {
+        setTable(TableUtils.getTabList(TableUtils.TABLE0, shortType.getShortName()));
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerTop.setLayoutManager(layoutManager);
