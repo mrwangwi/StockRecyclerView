@@ -17,7 +17,8 @@
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
             android:text="股票代码"
-            android:textColor="#999" />
+            android:textColor="#999"
+            android:textSize="12dp" />
 
         <ImageView
             android:id="@+id/iv"

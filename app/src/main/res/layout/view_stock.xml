@@ -77,6 +77,10 @@
                             android:layout_height="30dp"
                             android:overScrollMode="never" />
 
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="@color/border_color" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recyclerRight"

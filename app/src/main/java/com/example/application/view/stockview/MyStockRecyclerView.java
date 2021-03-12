@@ -23,6 +23,7 @@ import com.example.application.adapter.RightAdapter;
 import com.example.application.adapter.RyTagAdapter;
 import com.example.application.adapter.TableAdapter;
 import com.example.application.utils.DisplayUtil;
+import com.example.application.utils.TableUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -232,7 +233,8 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
                 }
                 orderListener.order(selectBean);
             }
-            recyclerRight.smoothScrollToPosition(0);
+            recyclerRight.scrollToPosition(0);
+            recyclerLeft.scrollToPosition(0);
         }
     }
 
@@ -240,6 +242,10 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
     public void click(ShortSelectBean shortSelectBean) {
         if (orderListener != null) {
             orderListener.order(shortSelectBean);
+            setTable(TableUtils.getTabList(TableUtils.TABLE0, shortSelectBean.getShortName()));
+            multiScroll.smoothScrollTo(0, 0);
+            recyclerRight.scrollToPosition(0);
+            recyclerLeft.scrollToPosition(0);
         }
     }
 
