@@ -1,6 +1,7 @@
 package com.example.application;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements MyStockRecyclerVi
 
     @Override
     public void order(ShortSelectBean shortSelectBean) {
-
+        if (shortSelectBean == null) return;
+        Toast.makeText(this, shortSelectBean.getShortName() + "/" + (shortSelectBean.isDesc() ? "降序" : "升序"), Toast.LENGTH_SHORT).show();
     }
 }

@@ -230,8 +230,16 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
                         iv.setImageResource(R.mipmap.icon_quotation_order_up);
                         break;
                 }
+                orderListener.order(selectBean);
             }
             recyclerRight.smoothScrollToPosition(0);
+        }
+    }
+
+    @Override
+    public void click(ShortSelectBean shortSelectBean) {
+        if (orderListener != null) {
+            orderListener.order(shortSelectBean);
         }
     }
 
@@ -260,13 +268,6 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
     //设置排序点击
     public void setOrderListener(OrderListener orderListener) {
         this.orderListener = orderListener;
-    }
-
-    @Override
-    public void click(ShortSelectBean shortSelectBean) {
-        if (orderListener != null) {
-            orderListener.order(shortSelectBean);
-        }
     }
 
     public interface ScrollListener {
