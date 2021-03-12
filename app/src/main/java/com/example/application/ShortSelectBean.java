@@ -79,6 +79,12 @@ public class ShortSelectBean implements Parcelable {
         this.shortName = shortName;
     }
 
+    public ShortSelectBean(boolean isDesc, String shortTypeString, String shortName) {
+        this.isDesc = isDesc;
+        this.shortTypeString = shortTypeString;
+        this.shortName = shortName;
+    }
+
     public ShortSelectBean(boolean isChecked, boolean isDesc, String shortTypeString, String shortName) {
         this.isChecked = isChecked;
         this.isDesc = isDesc;
@@ -97,10 +103,10 @@ public class ShortSelectBean implements Parcelable {
 
     public static List<ShortSelectBean> getShortList() {
         List<ShortSelectBean> list = new ArrayList<>();
-        ShortSelectBean selectBean = new ShortSelectBean("pxChangeRate", "涨幅榜");
+        ShortSelectBean selectBean = new ShortSelectBean(true, "pxChangeRate", "涨幅榜");
         selectBean.isChecked = true;
         list.add(selectBean);
-        ShortSelectBean selectBean1 = new ShortSelectBean("pxChangeRate", "跌幅榜");
+        ShortSelectBean selectBean1 = new ShortSelectBean(false, "pxChangeRate", "跌幅榜");
         selectBean1.isDesc = false;
         list.add(selectBean1);
         list.add(new ShortSelectBean("min5Chgpct", "快速涨幅"));
@@ -112,6 +118,12 @@ public class ShortSelectBean implements Parcelable {
 
 
     public static ShortSelectBean getShortBean(String text) {
+        if (text.equals("涨幅榜")) {
+            return new ShortSelectBean(true, "pxChangeRate", "涨幅");
+        }
+        if (text.equals("跌幅榜")) {
+            return new ShortSelectBean(false, "pxChangeRate", "涨幅");
+        }
         if (text.equals("涨幅")) {
             return new ShortSelectBean("pxChangeRate", "涨幅");
         }

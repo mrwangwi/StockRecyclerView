@@ -53,20 +53,20 @@ public class RyTagAdapter extends CommonAdapter<ShortSelectBean> {
 
         if (selectBean == null) {
             s.setChecked(false);
-        } else if (s.getShortName().equals(selectBean.getShortName())) {
-            s.setChecked(true);
         } else if (s.getShortName().equals("涨幅榜")) {
-            if (selectBean.getShortTypeString().equals("pxChangeRate")) {
-                s.setChecked(selectBean.isDesc());
+            if (selectBean.getShortName().startsWith("涨幅") && selectBean.isDesc()) {
+                s.setChecked(true);
             } else {
                 s.setChecked(false);
             }
         } else if (s.getShortName().equals("跌幅榜")) {
-            if (selectBean.getShortTypeString().equals("pxChangeRate")) {
-                s.setChecked(!selectBean.isDesc());
+            if ((selectBean.getShortName().startsWith("涨幅") || selectBean.getShortName().startsWith("跌幅")) && !selectBean.isDesc()) {
+                s.setChecked(true);
             } else {
                 s.setChecked(false);
             }
+        } else if (s.getShortName().equals(selectBean.getShortName())) {
+            s.setChecked(true);
         } else {
             s.setChecked(false);
         }
@@ -85,8 +85,8 @@ public class RyTagAdapter extends CommonAdapter<ShortSelectBean> {
 
         holder.getConvertView().setOnClickListener(v -> {
             if (!s.isChecked()) {
-                click.click(s);
-                selectBean = s;
+                selectBean = ShortSelectBean.getShortBean(s.getShortName());
+                click.click(selectBean);
                 notifyDataSetChanged();
             }
         });
