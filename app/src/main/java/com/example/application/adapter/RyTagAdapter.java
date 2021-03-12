@@ -80,7 +80,7 @@ public class RyTagAdapter extends CommonAdapter<ShortSelectBean> {
             holder.setTextColor(R.id.tv, mContext.getResources().getColor(R.color.text_orange));
         } else {
             holder.setBackgroundRes(R.id.tv, R.drawable.solid_gary_round);
-            holder.setTextColor(R.id.tv, mContext.getResources().getColor(R.color.black));
+            holder.setTextColor(R.id.tv, 0xFF333333);
         }
 
         holder.getConvertView().setOnClickListener(v -> {
