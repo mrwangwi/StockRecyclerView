@@ -1,7 +1,6 @@
 package com.example.application;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements MyStockRecyclerVi
             arrayList.add(null);
         }
         stockRecyclerView.setData(arrayList);
+        stockRecyclerView.setTopTable();
     }
 
     private int count;
@@ -54,19 +54,8 @@ public class MainActivity extends AppCompatActivity implements MyStockRecyclerVi
     private int top;
     private int bottom;
 
-
     @Override
-    public void order(String text, int type) {
-        switch (type) {
-            case 0:
-                Toast.makeText(this, text + " 不排序", Toast.LENGTH_SHORT).show();
-                break;
-            case 1:
-                Toast.makeText(this, text + " 降序", Toast.LENGTH_SHORT).show();
-                break;
-            case 2:
-                Toast.makeText(this, text + " 升序", Toast.LENGTH_SHORT).show();
-                break;
-        }
+    public void order(ShortSelectBean shortSelectBean) {
+
     }
 }

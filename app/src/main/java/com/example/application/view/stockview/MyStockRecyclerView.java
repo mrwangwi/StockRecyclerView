@@ -16,20 +16,24 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.application.R;
+import com.example.application.ShortSelectBean;
 import com.example.application.StockBean;
 import com.example.application.adapter.LeftAdapter;
 import com.example.application.adapter.RightAdapter;
+import com.example.application.adapter.RyTagAdapter;
 import com.example.application.adapter.TableAdapter;
 import com.example.application.utils.DisplayUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyStockRecyclerView extends LinearLayout implements View.OnClickListener {
+public class MyStockRecyclerView extends LinearLayout implements View.OnClickListener, RyTagAdapter.Click {
 
 
+    private ShortSelectBean shortType = new ShortSelectBean("pxChangeRate", "涨幅榜");
     private MyShadowView llLeft;
     private ConstraintLayout llRight;
+    private RecyclerView recyclerTop;
     private RecyclerView recyclerRight;
     private MyRecyclerView recyclerLeft;
     private RecyclerView recyclerTab;
@@ -37,6 +41,7 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
     private ImageView ivRight;
     private List<StockBean> list = new ArrayList<>();
     private List<String> listTab = new ArrayList<>();
+    private RyTagAdapter ryTagAdapter;
     private TableAdapter adapterTab;
     private RightAdapter adapterRight;
     private LeftAdapter adapterLeft;
@@ -71,6 +76,7 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
         inflater.inflate(R.layout.view_stock, this);
         llLeft = findViewById(R.id.ll_left);
         llRight = findViewById(R.id.ll_right);
+        recyclerTop = findViewById(R.id.recyclerTop);
         recyclerRight = findViewById(R.id.recyclerRight);
         recyclerLeft = findViewById(R.id.recyclerLeft);
         recyclerTab = findViewById(R.id.recyclerTab);
@@ -115,6 +121,14 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
             }
         });
         recyclerLeft.setRecyclerView(recyclerRight);
+    }
+
+    public void setTopTable() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerTop.setLayoutManager(layoutManager);
+        ryTagAdapter = new RyTagAdapter(getContext(), R.layout.item_ry_tag, ShortSelectBean.getShortList(), this, shortType, true);
+        recyclerTop.setAdapter(ryTagAdapter);
     }
 
 
@@ -189,7 +203,9 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
                 }
                 currentClickView = (LinearLayout) v;
                 iv.setImageResource(R.mipmap.icon_quotation_order_down);
-                orderType = 1;//降序
+                ShortSelectBean selectBean = ShortSelectBean.getShortBean(text);
+                orderListener.order(selectBean);
+                ryTagAdapter.setSelectBean(selectBean);
             } else {
                 orderType++;
                 switch (orderType % 3) {
@@ -205,7 +221,7 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
                 }
             }
             recyclerRight.smoothScrollToPosition(0);
-            orderListener.order(text, orderType % 3);
+            orderListener.order(shortType);
         }
     }
 
@@ -236,11 +252,18 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
         this.orderListener = orderListener;
     }
 
+    @Override
+    public void click(ShortSelectBean shortSelectBean) {
+        if (orderListener != null) {
+            orderListener.order(shortSelectBean);
+        }
+    }
+
     public interface ScrollListener {
         void scrolled();
     }
 
     public interface OrderListener {
-        void order(String text, int type);
+        void order(ShortSelectBean shortSelectBean);
     }
 }
