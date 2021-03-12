@@ -201,7 +201,7 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
             String text = tv.getText().toString().trim();
             ShortSelectBean selectBean = ShortSelectBean.getShortBean(text);
             if (selectBean != null) {
-                if (adapterTab.getShortType() != null && adapterTab.getShortType().getShortName().equals(selectBean.getShortName())) {
+                if (adapterTab.getShortType().getShortTypeString().equals(selectBean.getShortTypeString())) {
                     shortType.setDesc(!shortType.isDesc());
                     adapterTab.setShortType(shortType);
                 } else {
@@ -220,6 +220,7 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
     @Override
     public void click(ShortSelectBean shortSelectBean) {
         if (orderListener != null) {
+            shortSelectBean.setDesc(true);
             orderListener.order(shortSelectBean);
             this.shortType = shortSelectBean;
             setTable(TableUtils.getTabList(TableUtils.TABLE0, shortSelectBean.getShortName()));
