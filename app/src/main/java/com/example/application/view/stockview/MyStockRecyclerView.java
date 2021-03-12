@@ -199,24 +199,25 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
             TextView tv = v.findViewById(R.id.tv);
             ImageView iv = v.findViewById(R.id.iv);
             String text = tv.getText().toString().trim();
+            ShortSelectBean selectBean = ShortSelectBean.getShortBean(text);
             if (currentClickView == null || currentClickView != v) {
+                adapterTab.setShortType(selectBean);
                 if (currentClickView != null) {
                     ImageView ivPre = currentClickView.findViewById(R.id.iv);
                     ivPre.setImageResource(R.mipmap.icon_quotation_order);
                 }
                 currentClickView = (LinearLayout) v;
                 iv.setImageResource(R.mipmap.icon_quotation_order_down);
-                ShortSelectBean selectBean = ShortSelectBean.getShortBean(text);
                 orderListener.order(selectBean);
                 if (ryTagAdapter != null)
                     ryTagAdapter.setSelectBean(selectBean);
                 orderType = 1;
             } else {
-                ShortSelectBean selectBean = ShortSelectBean.getShortBean(text);
                 orderType++;
                 switch (orderType % 3) {
                     case 0:
                         iv.setImageResource(R.mipmap.icon_quotation_order);
+                        adapterTab.setShortType(null);
                         if (ryTagAdapter != null)
                             ryTagAdapter.setSelectBean(null);
                         break;
@@ -225,6 +226,7 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
                             selectBean.setDesc(true);
                             if (ryTagAdapter != null)
                                 ryTagAdapter.setSelectBean(selectBean);
+                            adapterTab.setShortType(selectBean);
                         }
                         iv.setImageResource(R.mipmap.icon_quotation_order_down);
                         break;
@@ -233,12 +235,14 @@ public class MyStockRecyclerView extends LinearLayout implements View.OnClickLis
                             selectBean.setDesc(false);
                             if (ryTagAdapter != null)
                                 ryTagAdapter.setSelectBean(selectBean);
+                            adapterTab.setShortType(selectBean);
                         }
                         iv.setImageResource(R.mipmap.icon_quotation_order_up);
                         break;
                 }
                 orderListener.order(selectBean);
             }
+            adapterTab.notifyDataSetChanged();
             recyclerRight.scrollToPosition(0);
             recyclerLeft.scrollToPosition(0);
         }
